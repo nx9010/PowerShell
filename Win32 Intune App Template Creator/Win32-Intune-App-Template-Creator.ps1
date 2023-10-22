@@ -1,16 +1,13 @@
 ﻿<#
 TODO:
-    - Show a info screen (Text based), describing the tool usage, purpose, etc
-    - Ask for the App Vendor
-    - Ask for the App Name
-    - Ask for the App Version
-    - Ask for the App Location
-    - Ask for the Script Author
-    - Fill the Installation and Uninstallation files With the App Name, Version, etc
+    - Display a HELP when the script is run without the needed parameters
+    - Add the needed parameters
+    - Fill the 'Deploy-Application.ps1' file with the App Name, Version, etc
     - Try to create a PowerShell script that, given a program name installed, creates a detection script
     - Try to download Logo files for the given application
-    - Create a MarkDown template file with sample information
-    - Save some information on registry, like Script Author, for use as sugestion on another run of the tool
+    - Make the script create a markdown file with some information about the application
+    - Create parameters that allow the user to choose the directory structure (One directory for each: Vendor, App and Version, or only one directory for each app. Ex.: Mozilla > Firefox > 118.0.2 OR 'Mozilla Firefox 118.0.2')
+    - Generate output information about the steps that the script is doing to give some feedback to the user
 #>
 
 [CmdletBinding()]
@@ -124,7 +121,7 @@ Try {
     Add-Content -Value "" -Path "$readmeMdFile" -Force
 
 
-    # Put some information in the Install.ps1 and Uninstall.ps1 files
+    # Put some information in the Deploy-Application.ps1
     #$installContent = Get-Content "$DestinationPath\$ApplicationVendor\$ApplicationName\$ApplicationVersion\$sourcesDirectoryName\Install.ps1"
     #$installContent = $installContent -replace '[String]$appVendor = ''', "[String]$appVendor = '$($ApplicationVendor)'"
     #$installContent = $installContent -replace "", ""
