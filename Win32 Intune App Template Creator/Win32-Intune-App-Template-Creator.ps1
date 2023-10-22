@@ -29,8 +29,8 @@ Try {
     ##* VARIABLE DECLARATION
     ##*===============================================
     [String]$assetsDirectoryName = 'Assets'
-    [String]$packagesDirectoryName = 'Packages'
-    [String]$sourcesDirectoryName = 'Sources'
+    [String]$packagesDirectoryName = 'Package'
+    [String]$sourcesDirectoryName = 'Source'
     [String]$ToolsDirectoryName = 'Utils'
     # URLs
     [String]$intuneWinAppUtilUrl = "https://github.com/microsoft/Microsoft-Win32-Content-Prep-Tool/raw/master/IntuneWinAppUtil.exe"
