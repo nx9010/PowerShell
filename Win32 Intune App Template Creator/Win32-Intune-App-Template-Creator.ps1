@@ -1,8 +1,47 @@
 ﻿<#
-TODO:
-    - Fill the 'Deploy-Application.ps1' file with the App Name, Version, etc
-    - Display a HELP when the script is run without the needed parameters
-    - Try to create a PowerShell script that, given a program name installed, creates a detection script for use in the Intune application
+.SYNOPSIS
+
+Win32 Intune App Template Creator
+
+The purpose of this script is to help the process of create a Win32 Intune application and to standardizing the process.
+It creates a structure that aims to make the activity of create a Win32 application more easy.
+
+.DESCRIPTION
+
+Win32 Intune App Template Creator is licensed under the GNU LGPLv3 License - (C) 2023 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham and Muhammad Mashwani).
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the
+Free Software Foundation, either version 3 of the License, or any later version. This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+for more details. You should have received a copy of the GNU Lesser General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+
+.PARAMETER DestinationPath
+
+The full path where the script will create directory structure.
+
+.PARAMETER ApplicationVendor
+
+The name of the vender of the application.
+
+.PARAMETER ApplicationName
+
+The name of the application.
+
+.PARAMETER ApplicationVersion
+
+The version of the application.
+
+
+.EXAMPLE
+
+.\Win32-Intune-App-Template-Creator.ps1 -DestinationPath "C:\Temp\" -ApplicationVendor "Mozilla" -ApplicationName "Firefox" -ApplicationVersion "118.0.2"
+
+
+.LINK
+
+https://github.com/nx9010
+
 #>
 
 [CmdletBinding()]
@@ -14,11 +53,7 @@ Param (
     [Parameter(Mandatory = $false)]
     [String]$ApplicationName = '',
     [Parameter(Mandatory = $false)]
-    [String]$ApplicationVersion = '',
-    [Parameter(Mandatory = $false)]
-    [switch]$JoinApplicationVendorAndApplicationName = $false,
-    [Parameter(Mandatory = $false)]
-    [switch]$JoinApplicationNameAndApplicationVersion = $false
+    [String]$ApplicationVersion = ''
 )
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -108,15 +143,15 @@ Try {
     # Creates the README.md file
     Write-Host "Creating the README.md file..." 
     $AppFullName = "$($ApplicationVendor)_$($ApplicationName)_$($ApplicationVersion)"
-    Add-Content -Value "##$AppFullName" -Path "$readmeMdFile" -Force
+    Add-Content -Value "##$($ApplicationVendor) $($ApplicationName) $($ApplicationVersion)" -Path "$readmeMdFile" -Force
     Add-Content -Value "" -Path "$readmeMdFile" -Force
     Add-Content -Value "**Description**" -Path "$readmeMdFile" -Force
-    Add-Content -Value "> <PUT SOFTWARE DESCRIPTION HERE>" -Path "$readmeMdFile" -Force
+    Add-Content -Value ">PUT SOFTWARE DESCRIPTION HERE" -Path "$readmeMdFile" -Force
     Add-Content -Value "" -Path "$readmeMdFile" -Force
     Add-Content -Value "**Publisher:** $ApplicationVendor" -Path "$readmeMdFile" -Force
     Add-Content -Value "**App Version:** $ApplicationVersion" -Path "$readmeMdFile" -Force
-    Add-Content -Value "**Information URL:** <INSERT THE INFORMATION URL HERE>" -Path "$readmeMdFile" -Force
-    Add-Content -Value "**Privacy URL:** <INSERT THE PRIVACY URL HERE>" -Path "$readmeMdFile" -Force
+    Add-Content -Value "**Information URL:** INSERT THE INFORMATION URL HERE" -Path "$readmeMdFile" -Force
+    Add-Content -Value "**Privacy URL:** INSERT THE PRIVACY URL HERE" -Path "$readmeMdFile" -Force
     Add-Content -Value "" -Path "$readmeMdFile" -Force
     Add-Content -Value "**Commands:**" -Path "$readmeMdFile" -Force
     Add-Content -Value "- **Install**" -Path "$readmeMdFile" -Force
@@ -125,12 +160,8 @@ Try {
     Add-Content -Value "	``Deploy-Application.exe "".\$($AppFullName).ps1"" -DeploymentType 'Uninstall' -DeployMode 'Silent'``" -Path "$readmeMdFile" -Force
     Add-Content -Value "" -Path "$readmeMdFile" -Force
     Add-Content -Value "**Detection Rules:**" -Path "$readmeMdFile" -Force
+    Add-Content -Value "PUT THE DETECTION RULES HERE" -Path "$readmeMdFile" -Force
     Add-Content -Value "" -Path "$readmeMdFile" -Force
-    Add-Content -Value "" -Path "$readmeMdFile" -Force
-    Add-Content -Value "" -Path "$readmeMdFile" -Force
-
-
-
 
     Write-Host "End of the script." 
     ##*===============================================
@@ -139,3 +170,10 @@ Try {
 } Catch {
 
 }
+
+<#
+TODO:
+    - Fill the 'Deploy-Application.ps1' file with the App Name, Version, etc
+    - Display a HELP when the script is run without the needed parameters
+    - Try to create a PowerShell script that, given a program name installed, creates a detection script for use in the Intune application
+#>
