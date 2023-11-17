@@ -1,7 +1,7 @@
 ## Win32 Intune App Template Creator
 
 **Description**
-> The purpose of this script is to help the activity of create a Win32 Intune application and to standardizing the process.
+> The purpose of this script is to help with the activity of creating a Win32 Intune application and to standardize the process.
 It creates a structure that aims to make the activity of create a Win32 application more easy.
 
 **Directory structure:**
